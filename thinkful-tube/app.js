@@ -17,15 +17,18 @@ function getDataFromApi(searchTerm, callback) {
   }
   $.getJSON(youTubeBaseURL, query, callback);
 }
-const logData=(data)=>{
-    console.log(data);
-};
+// const logData=(data)=>{
+//     console.log(data);
+// };
 // Render Function
 function displayYOUTUBESearchData(data) {
+  console.log(data);
   var resultElement = '';
-  if (data.Search) {
-    data.Search.forEach(function(item) {
-     resultElement += `<img src=${snippet.thumbnails.high.url}>`;
+  if (data.items) {
+    data.items.forEach(function(item) {
+      // console.log(data.items);
+      // console.log(item.snippet.thumbnails.high.url);
+     resultElement += `<img src=${item.snippet.thumbnails.high.url}>`;
     });
   }
   else {
@@ -42,6 +45,6 @@ function watchSubmit() {
     getDataFromApi(query, displayYOUTUBESearchData);
   });
 }
-getDataFromApi('Hamilton', logData);
+// getDataFromApi('Hamilton', logData);
 
 $(function(){watchSubmit();});
