@@ -5,12 +5,13 @@
 let YOUTUBE_BASE_URL='https://www.googleapis.com/youtube/v3/search';
 function getDataFromApi(searchTerm, callback) {
   var query = {
-    s: searchTerm,
-    r: 'json'
+    part: 'snippet',
+    key: 'AIzaSyCAFmQtIe0X1yRuYfEFIp5hNIFRzgEqgB0',
+    q: searchTerm
   }
-  $.getJSON(OMDB_BASE_URL, query, callback);
+  $.getJSON(YOUTUBE_BASE_URL, query, callback);
 }
-function displayOMDBSearchData(data) {
+function displayYOUTUBESearchData(data) {
   var resultElement = '';
   if (data.Search) {
     data.Search.forEach(function(item) {
@@ -28,7 +29,7 @@ function watchSubmit() {
   $('.js-search-form').submit(function(e) {
     e.preventDefault();
     var query = $(this).find('.js-query').val();
-    getDataFromApi(query, displayOMDBSearchData);
+    getDataFromApi(query, displayYOUTUBESearchData);
   });
 }
 
