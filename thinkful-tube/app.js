@@ -21,6 +21,7 @@ function getDataFromApi(searchTerm, callback) {
 //     console.log(data);
 // };
 // Render Function
+function 
 function displayYOUTUBESearchData(data) {
     console.log(data);
     var resultElement = '';
