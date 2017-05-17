@@ -1,21 +1,31 @@
+// App State
+const appState={
+    results:[]
+};
+
 // This is the endpoint to the Google YouTube API
 // API URL: https://www.googleapis.com
 // Endpoint: /youtube/v3/search
 // Parameters: 
-let YOUTUBE_BASE_URL='https://www.googleapis.com/youtube/v3/search';
+let youTubeBaseURL='https://www.googleapis.com/youtube/v3/search';
+// State modifications
 function getDataFromApi(searchTerm, callback) {
   var query = {
     part: 'snippet',
-    key: 'AIzaSyCAFmQtIe0X1yRuYfEFIp5hNIFRzgEqgB0',
-    q: searchTerm
+    q: searchTerm,
+    key: 'AIzaSyCAFmQtIe0X1yRuYfEFIp5hNIFRzgEqgB0'
   }
-  $.getJSON(YOUTUBE_BASE_URL, query, callback);
+  $.getJSON(youTubeBaseURL, query, callback);
 }
+const logData=(data)=>{
+    console.log(data);
+};
+// Render Function
 function displayYOUTUBESearchData(data) {
   var resultElement = '';
   if (data.Search) {
     data.Search.forEach(function(item) {
-     resultElement += '<p>' + item.Title + '</p>';
+     resultElement += `<img src=${snippet.thumbnails.high.url}>`;
     });
   }
   else {
@@ -24,7 +34,7 @@ function displayYOUTUBESearchData(data) {
   
   $('.js-search-results').html(resultElement);
 }
-
+// Event Listeners
 function watchSubmit() {
   $('.js-search-form').submit(function(e) {
     e.preventDefault();
@@ -32,5 +42,6 @@ function watchSubmit() {
     getDataFromApi(query, displayYOUTUBESearchData);
   });
 }
+getDataFromApi('Hamilton', logData);
 
 $(function(){watchSubmit();});
