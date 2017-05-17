@@ -5,6 +5,7 @@ const appState={
     videoIDs: [],
     thumbnails: [],
     nextPageToken: null,
+    prevPageToken: null,
     searchTerm: null
 };
 
@@ -25,22 +26,22 @@ let youTubeBaseURL='https://www.googleapis.com/youtube/v3/search';
 // }
 // State modifications
 function getDataAPI(state, searchResult){
-
+    state.searchTerm
 }
 function getChannelIds(state) {
-  state
+    state.channelIds
 }
 function getVideoIDs(state){
-
+    state.videoIds
 }
 function getThumbNails(state){
-
+    state.thumbnails
 }
 function goToNextPage(state){
-
+    state.nextPageToken
 }
 function goToPrevPage(state){
-
+    state.prevPageToken
 }
 
 // Render Function
@@ -82,24 +83,29 @@ $('.js-search-results').html(resultElement);
 
 
 function watchSubmit() {
-  $('.js-search-form').submit(function(e) {
-    e.preventDefault();
-    var query = $(this).find('.js-query').val();
-    getDataFromApi(query, displayYOUTUBESearchData);
-  });
 }
 // getDataFromApi('Hamilton', logData);
 function nextPage() {
-  $('.next').click(function(event) {
-     console.log(appState.nextPageToken);
-     var query = $('.js-query').val();
-     getDataFromApi(query, displayYOUTUBESearchData);
-  });
 }
 
 // Event Listeners
 function eventListeners(){
-
+    // Look for what was submitted in the search, grabs the API
+    $('.js-search-form').submit(function(e) {
+        // e.preventDefault();
+        // var query = $(this).find('.js-query').val();
+        // getDataFromApi(query, displayYOUTUBESearchData);
+        getDataAPI(appState);
+        render(appState);
+    });
+    // Move on to the next page if selected
+    $('.next').click(function(event) {
+        // console.log(appState.nextPageToken);
+        // var query = $('.js-query').val();
+        // getDataFromApi(query, displayYOUTUBESearchData);
+        goToNextPage(appState);
+        render(appState);
+    });
 }
 
 $(function(){
