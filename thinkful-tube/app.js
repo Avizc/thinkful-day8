@@ -28,7 +28,8 @@ function displayYOUTUBESearchData(data) {
     data.items.forEach(function(item) {
       // console.log(data.items);
       // console.log(item.snippet.thumbnails.high.url);
-     resultElement += `<img src=${item.snippet.thumbnails.high.url}>`;
+     resultElement += `<a href="https://www.youtube.com/watch?v=${item.id.videoId}"><img src=${item.snippet.thumbnails.high.url}></a>`;
+     console.log(item.id.videoId);
     });
   }
   else {
