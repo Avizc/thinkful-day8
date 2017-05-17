@@ -1,6 +1,7 @@
 // App State
 const appState={
-    results:[]
+    results:[],
+    nextPageToken: null
 };
 
 // This is the endpoint to the Google YouTube API
@@ -13,7 +14,8 @@ function getDataFromApi(searchTerm, callback) {
   var query = {
     part: 'snippet',
     q: searchTerm,
-    key: 'AIzaSyCAFmQtIe0X1yRuYfEFIp5hNIFRzgEqgB0'
+    key: 'AIzaSyCAFmQtIe0X1yRuYfEFIp5hNIFRzgEqgB0',
+    pageToken: appState.nextPageToken
   }
   $.getJSON(youTubeBaseURL, query, callback);
 }
@@ -21,9 +23,20 @@ function getDataFromApi(searchTerm, callback) {
 //     console.log(data);
 // };
 // Render Function
-function 
+// function nextButton(data) {
+//   console.log(data);
+//   let previousElement = '';
+//   if (data.items) {
+//     data.items.forEach(function(item) {
+//       previousElement += `<a href="https://www.youtube.com/results?sp=SCjqAwA%253D&q=worth+it"><button type="button" class="button next">NEXT</button></a>`
+//     });
+//   }
+  
+// }
+
 function displayYOUTUBESearchData(data) {
     console.log(data);
+    appState.nextPageToken = (data.nextPageToken);
     var resultElement = '';
     if (data.items) {
         data.items.forEach(function(item) {
@@ -39,6 +52,8 @@ function displayYOUTUBESearchData(data) {
 
 $('.js-search-results').html(resultElement);
 }
+
+
 // Event Listeners
 function watchSubmit() {
   $('.js-search-form').submit(function(e) {
@@ -49,4 +64,17 @@ function watchSubmit() {
 }
 // getDataFromApi('Hamilton', logData);
 
-$(function(){watchSubmit();});
+function nextPage() {
+  $('.next').click(function(event) {
+     console.log(appState.nextPageToken);
+     var query = $('.js-query').val();
+     getDataFromApi(query, displayYOUTUBESearchData);
+  });
+}
+
+$(function(){
+  watchSubmit();
+  nextPage();
+});
+
+
