@@ -1,7 +1,11 @@
 // App State
 const appState={
-    results:[],
-    nextPageToken: null
+    // results:[],
+    channelIds:[],
+    videoIDs: [],
+    thumbnails: [],
+    nextPageToken: null,
+    searchTerm: null
 };
 
 // This is the endpoint to the Google YouTube API
@@ -9,19 +13,36 @@ const appState={
 // Endpoint: /youtube/v3/search
 // Parameters: 
 let youTubeBaseURL='https://www.googleapis.com/youtube/v3/search';
+
+// function getDataFromApi(searchTerm, callback) {
+//   var query = {
+//     part: 'snippet',
+//     q: searchTerm,
+//     key: 'AIzaSyCAFmQtIe0X1yRuYfEFIp5hNIFRzgEqgB0',
+//     pageToken: appState.nextPageToken
+//   }
+//   $.getJSON(youTubeBaseURL, query, callback);
+// }
 // State modifications
-function getDataFromApi(searchTerm, callback) {
-  var query = {
-    part: 'snippet',
-    q: searchTerm,
-    key: 'AIzaSyCAFmQtIe0X1yRuYfEFIp5hNIFRzgEqgB0',
-    pageToken: appState.nextPageToken
-  }
-  $.getJSON(youTubeBaseURL, query, callback);
+function getDataAPI(state, searchResult){
+
 }
-// const logData=(data)=>{
-//     console.log(data);
-// };
+function getChannelIds(state) {
+  state
+}
+function getVideoIDs(state){
+
+}
+function getThumbNails(state){
+
+}
+function goToNextPage(state){
+
+}
+function goToPrevPage(state){
+
+}
+
 // Render Function
 // function nextButton(data) {
 //   console.log(data);
@@ -31,8 +52,14 @@ function getDataFromApi(searchTerm, callback) {
 //       previousElement += `<a href="https://www.youtube.com/results?sp=SCjqAwA%253D&q=worth+it"><button type="button" class="button next">NEXT</button></a>`
 //     });
 //   }
-  
+
 // }
+
+// Render Function
+function render(state){
+  //if (state. //)
+
+}
 
 function displayYOUTUBESearchData(data) {
     console.log(data);
@@ -54,7 +81,6 @@ $('.js-search-results').html(resultElement);
 }
 
 
-// Event Listeners
 function watchSubmit() {
   $('.js-search-form').submit(function(e) {
     e.preventDefault();
@@ -63,7 +89,6 @@ function watchSubmit() {
   });
 }
 // getDataFromApi('Hamilton', logData);
-
 function nextPage() {
   $('.next').click(function(event) {
      console.log(appState.nextPageToken);
@@ -72,9 +97,14 @@ function nextPage() {
   });
 }
 
+// Event Listeners
+function eventListeners(){
+
+}
+
 $(function(){
-  watchSubmit();
-  nextPage();
+  eventListeners();
+  render(appState, '');
 });
 
 
