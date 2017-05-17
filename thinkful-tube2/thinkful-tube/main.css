@@ -1,0 +1,36 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+.hidden{
+    display: none;
+}
+.col-12{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.js-search-results{
+    margin-top: 10px;
+}
+.js-search-results img{
+    margin: 25px 25px 0px 25px;
+}
+.js-search-results p{
+    margin: -5px 0 0 0;
+}
+.left previous{
+    text-align: left;
+    margin: left;
+}
+.right next{
+    text-align: right;
+    margin: right;
+}
+.button{
+    background-color: #6C9DC9;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+}
