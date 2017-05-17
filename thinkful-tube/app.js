@@ -22,21 +22,21 @@ function getDataFromApi(searchTerm, callback) {
 // };
 // Render Function
 function displayYOUTUBESearchData(data) {
-  console.log(data);
-  var resultElement = '';
-  if (data.items) {
-    data.items.forEach(function(item) {
-      // console.log(data.items);
-      // console.log(item.snippet.thumbnails.high.url);
-     resultElement += `<a href="https://www.youtube.com/watch?v=${item.id.videoId}"><img src=${item.snippet.thumbnails.high.url}></a>`;
-     console.log(item.id.videoId);
-    });
-  }
-  else {
-    resultElement += '<p>No results</p>';
-  }
-  
-  $('.js-search-results').html(resultElement);
+    console.log(data);
+    var resultElement = '';
+    if (data.items) {
+        data.items.forEach(function(item) {
+            // console.log(data.items);
+            // console.log(item.snippet.thumbnails.high.url);
+            resultElement += `<a href="https://www.youtube.com/watch?v=${item.id.videoId}"><img src=${item.snippet.thumbnails.high.url}></a><p><a href="https://www.youtube.com/channel/${item.snippet.channelId}">${item.snippet.channelTitle}</a></p>`;
+            console.log(item.id.videoId);
+        });
+    }
+    else {
+        resultElement += '<p>No results</p>';
+}
+
+$('.js-search-results').html(resultElement);
 }
 // Event Listeners
 function watchSubmit() {
